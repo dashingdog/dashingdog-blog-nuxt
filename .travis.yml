@@ -7,7 +7,7 @@ branches:
   only:
     - master
 install:
-  - npm install
+  - skip
 before_install:
   - openssl aes-256-cbc -K $encrypted_d11afb7726ff_key -iv $encrypted_d11afb7726ff_iv
     -in id_rsa.enc -out id_rsa -d
