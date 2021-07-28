@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
     "build": "nuxt build",
-    "start": "cross-env NODE_ENV=production pm2 start server/index.js --name blog-nuxt",
+    "start": "cross-env NODE_ENV=production pm2 start server/index.js --name dashingdog-blog-nuxt",
     "generate": "nuxt generate"
   },
   "dependencies": {

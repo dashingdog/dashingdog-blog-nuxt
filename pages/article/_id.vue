@@ -203,7 +203,7 @@ export default {
       }
       try {
         const res = await this.$store.dispatch("article/likeArticle", this.id);
-        if (res.errorCode === 0) {
+        if (res.code === 0) {
           this.articleLike++;
           this.likeArticles.push(this.id);
           window.localStorage.setItem(

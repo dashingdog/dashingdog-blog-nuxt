@@ -9,7 +9,7 @@
         <desktop-nav :navList="navList"></desktop-nav>
       </div>
       <div class="social-links between">
-        <a href="mailto:frankin0329@gmail.com" target="_blank">
+        <a href="mailto:frankin9703@hotmail.com" target="_blank">
           <i class="icon icon-mail"></i>
         </a>
         <a href="https://github.com/dashingdog" target="_blank">

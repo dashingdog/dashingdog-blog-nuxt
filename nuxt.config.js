@@ -11,20 +11,20 @@ module.exports = {
   */
   head: {
     title: '帅帅狗',
-    titleTemplate: '%s | shirmy',
+    titleTemplate: '%s | dashingdog',
     meta: [
       { charset: 'utf-8' },
       { 'http-equiv': 'cleartype', content: 'on' },
       { 'http-equiv': 'Cache-Control' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
       { hid: 'keywords', name: 'keywords', content: '前端，JavaScript，博客，Node，Vue' },
-      { name: 'author', content: 'qiushiming1997@gmail.com' },
+      { name: 'author', content: 'frankin9703@hotmail.com' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'dns-prefetch', href: '//resource.shirmy.me' },
-      { rel: 'dns-prefetch', href: '//api.shirmy.me' },
+      { rel: 'dns-prefetch', href: '//resouce.shirmy.me' },
+      { rel: 'dns-prefetch', href: '//api.dashingdog.me' },
     ],
     script: [
       {

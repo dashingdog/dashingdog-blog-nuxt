@@ -7,7 +7,11 @@
       @send="onSend"
     ></comment-editor>
     <div class="comment-list-wrapper">
-      <comment-list :comments="comments" @reply="onReply" :loading="loading"></comment-list>
+      <comment-list
+        :comments="comments"
+        @reply="onReply"
+        :loading="loading"
+      ></comment-list>
     </div>
   </div>
 </template>
@@ -19,89 +23,89 @@ import CommentEditor from "@/components/base/comment-editor/comment-editor";
 export default {
   components: {
     CommentEditor,
-    CommentList
+    CommentList,
   },
 
   props: {
     comments: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
 
     articleId: {
-      type: Number
+      type: Number,
     },
 
     loading: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
   data() {
     return {
       isShowReplyContent: false,
-      parentId: 0
+      parentId: 0,
     };
   },
 
   methods: {
     onReply(comment) {
-      this.parentId = comment.id
+      this.parentId = comment.id;
       this.$refs.editor.reply = {
         nickname: comment.nickname,
-        content: comment.content
-      }
+        content: comment.content,
+      };
       this.isShowReplyContent = true;
     },
 
     closeReply() {
-      this.isShowReplyContent = false
-      this.parentId = 0
+      this.isShowReplyContent = false;
+      this.parentId = 0;
       this.$refs.editor.reply = {
-        nickname: '',
-        content: ''
-      }
-      this.$refs.editor.resetField()
+        nickname: "",
+        content: "",
+      };
+      this.$refs.editor.resetField();
     },
 
     async onSend(data) {
       if (!this.articleId) {
-        return
+        return;
       }
       if (this.isShowReplyContent) {
         // 回复评论
         if (!this.parentId) {
-          return
+          return;
         }
         try {
-          data.articleId = this.articleId
-          data.parentId = this.parentId
-          const res = await this.$store.dispatch('article/replyComment', data)
-          if (res.errorCode === 0) {
-            this.closeReply()
-            this.$emit('createCommentSuccess')
+          data.articleId = this.articleId;
+          data.parentId = this.parentId;
+          const res = await this.$store.dispatch("article/replyComment", data);
+          if (res.code === 0) {
+            this.closeReply();
+            this.$emit("createCommentSuccess");
           }
         } catch (e) {
           // eslint-disable-next-line no-console
-          console.log(e)
+          console.log(e);
         }
       } else {
         // 创建评论
         try {
-          data.articleId = this.articleId
-          const res = await this.$store.dispatch('article/createComment', data)
-          if (res.errorCode === 0) {
-            this.$refs.editor.resetField()
-            this.$emit('createCommentSuccess')
+          data.articleId = this.articleId;
+          const res = await this.$store.dispatch("article/createComment", data);
+          if (res.code === 0) {
+            this.$refs.editor.resetField();
+            this.$emit("createCommentSuccess");
           }
         } catch (e) {
           // eslint-disable-next-line no-console
-          console.log(e)
+          console.log(e);
         }
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -1,25 +1,24 @@
 language: node_js
 cache:
   directories:
-  - node_modules
+    - node_modules
 node_js: stable
 branches:
   only:
-  - master
+    - master
 install:
-- npm install
+  - npm install
 before_install:
-- openssl aes-256-cbc -K $encrypted_187100459838_key -iv $encrypted_187100459838_iv
-  -in id_rsa.enc -out ~/.ssh/id_rsa -d
-- chmod 600 ~/.ssh/id_rsa
+  - openssl aes-256-cbc -K $encrypted_d11afb7726ff_key -iv $encrypted_d11afb7726ff_iv
+    -in id_rsa.enc -out ~\/.ssh/id_rsa -d
+  - mv id_rsa ~/.ssh
+  - chmod 600 ~/.ssh/id_rsa
 after_success:
-- ssh "$DEPLOY_USER"@"$DEPLOY_HOST" -o StrictHostKeyChecking=no 'cd /data/smile-blog-nuxt && git pull && bash ./script/deploy.sh'
-# notifications:
-#   email:
-#     recipients:
-#     - qiushiming1997@gmail.com
-#     on_success: always
-#     on_failure: always
+  - ssh "$DEPLOY_USER"@"$DEPLOY_HOST" -o StrictHostKeyChecking=no 'cd ./server/dashongdog-blog-nuxt
+    && git pull && bash ./script/deploy.sh'
 addons:
   ssh_known_hosts:
-  - "$DEPLOY_HOST"
+    - "$DEPLOY_HOST"
+branches:
+  only:
+    - master

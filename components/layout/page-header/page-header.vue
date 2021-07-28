@@ -2,7 +2,7 @@
   <header class="header-container" :class="homeMobileClass">
     <div class="header-logo">
       <switch-theme :size="'30px'"></switch-theme>
-      <i class="logo">dashingdog</i>
+      <i @click="toHome" class="logo">dashingdog</i>
     </div>
     <nav class="nav-wrapper">
       <desktop-nav class="desktop-nav" :navList="navList"></desktop-nav>
@@ -21,6 +21,12 @@ export default {
     DesktopNav,
     MobileNav,
     SwitchTheme,
+  },
+
+  methods: {
+    toHome() {
+      this.$router.push("/");
+    },
   },
 
   props: {
@@ -58,6 +64,7 @@ export default {
 
 .header-logo {
   .logo {
+    cursor: pointer;
     margin-left: 10px;
     font-size: $title-font-size-medium;
     transition: $theme-transition;

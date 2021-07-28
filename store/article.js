@@ -180,7 +180,7 @@ export const actions = {
 
   async likeComment({ commit}, id) {
     const res = await comment.likeComment(id)
-    if (res.errorCode === 0) {
+    if (res.code === 0) {
       commit('setLikeComment', id)
       return res
     }
