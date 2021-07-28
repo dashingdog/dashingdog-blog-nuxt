@@ -10,7 +10,7 @@ install:
   - npm install
 before_install:
   - openssl aes-256-cbc -K $encrypted_d11afb7726ff_key -iv $encrypted_d11afb7726ff_iv
-    -in id_rsa.enc -out ~\/.ssh/id_rsa -d
+    -in id_rsa.enc -out id_rsa -d
   - mv id_rsa ~/.ssh
   - chmod 600 ~/.ssh/id_rsa
 after_success:
