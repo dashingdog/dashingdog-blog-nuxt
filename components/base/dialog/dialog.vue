@@ -8,7 +8,7 @@
         <slot></slot>
         <loading v-show="loading"></loading>
         <transition name="fade">
-          <img v-if="imgSrc" v-show="!loading" :src="imgSrc">
+          <img v-if="imgSrc" v-show="!loading" :src="imgSrc" />
         </transition>
       </div>
     </div>
@@ -16,74 +16,74 @@
 </template>
 
 <script>
-import ClickOutside from '@/services/directives/click-outside'
+import ClickOutside from "@/services/directives/click-outside";
 
 export default {
   props: {
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     imgSrc: {
       type: String,
-      default: ''
+      default: "",
     },
 
     visible: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
   data() {
     return {
       tmp: {
-        overflow: ''
-      }
-    }
+        overflow: "",
+      },
+    };
   },
 
   directives: {
-    ClickOutside
+    ClickOutside,
   },
 
   computed: {
     dialogVisible() {
       if (this.visible) {
-        this.lock()
+        this.lock();
       } else {
-        this.unlock()
+        this.unlock();
       }
-      return this.visible
-    }
+      return this.visible;
+    },
   },
 
   methods: {
     lock() {
       if (process.client) {
-        this.tmp.overflow = document.body.style.overflow
-        document.body.style.overflow = 'hidden'
+        this.tmp.overflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
       }
     },
 
     unlock() {
       if (process.client) {
-        document.body.style.overflow = this.tmp.overflow
+        document.body.style.overflow = this.tmp.overflow;
       }
     },
 
     close() {
-      this.unlock()
-      this.$emit('update:visible', false)
-    }
-  }
-}
+      this.unlock();
+      this.$emit("update:visible", false);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/variables.scss';
-@import '@/assets/scss/animation.scss';
+@import "@/assets/scss/variables.scss";
+@import "@/assets/scss/animation.scss";
 
 .dialog {
   display: flex;
@@ -97,6 +97,11 @@ export default {
   z-index: $index-popper;
   background-color: var(--code-background);
   overflow: hidden;
+  .dialog-body {
+    max-height: 100%;
+    max-width: 100%;
+    overflow: scroll;
+  }
 }
 
 .close {
