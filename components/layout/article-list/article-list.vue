@@ -27,7 +27,7 @@
                     v-for="author in article.authors"
                     :key="author.id"
                   >
-                    {{ author.nickname }}
+                    {{ author.nickName }}
                   </li>
                 </ul>
               </div>

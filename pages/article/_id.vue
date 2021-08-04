@@ -13,7 +13,7 @@
               :key="author.id"
               class="author-name"
               :to="`/about/${author.id}`"
-              >{{ author.nickname }}</router-link
+              >{{ author.nickName }}</router-link
             >
             &nbsp;<time :datetime="article.created_date | filterTime"
               >&nbsp;{{ article.created_date | filterTime }}</time

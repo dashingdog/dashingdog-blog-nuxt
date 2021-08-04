@@ -20,7 +20,7 @@
             v-for="author in article.authors"
             :key="author.id"
             @click.stop="navAuthor(author.id)"
-            >{{ author.nickname }}</span
+            >{{ author.nickName }}</span
           >
           <time :datetime="article.created_date | filterTime">
             &nbsp;{{ article.created_date | filterTime("Y-m-d") }}

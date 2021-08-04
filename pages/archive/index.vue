@@ -2,14 +2,29 @@
   <div class="archive-container">
     <split-line :icon="'post'" :desc="`${archiveTotal} posts`"></split-line>
     <div class="year-wrapper" v-for="year in archive" :key="year.year">
-      <div class="year-name">{{year.year}}</div>
-      <dl class="month-wrapper" v-for="month in year.monthList" :key="month.month">
-        <dt class="month-name">{{month.month | monthTrans}}</dt>
-        <dd class="article-item" v-for="article in month.articles" :key="article.id">
-          <span class="time">{{article.created_date}}</span>
-          <router-link class="title" :to="'/article/' + article.id">{{article.title}}</router-link>
+      <div class="year-name">{{ year.year }}</div>
+      <dl
+        class="month-wrapper"
+        v-for="month in year.monthList"
+        :key="month.month"
+      >
+        <dt class="month-name">{{ month.month | monthTrans }}</dt>
+        <dd
+          class="article-item"
+          v-for="article in month.articles"
+          :key="article.id"
+        >
+          <span class="time">{{ article.created_date }}</span>
+          <router-link class="title" :to="'/article/' + article.id">{{
+            article.title
+          }}</router-link>
           <div class="avtar-wrapper">
-            <i v-for="author in article.authors" :key="author.id" class="avatar" :style="{backgroundImage: `url(${author.avatar})`}"></i>
+            <i
+              v-for="author in article.authors"
+              :key="author.id"
+              class="avatar"
+              :style="{ backgroundImage: `url(${author.avatar})` }"
+            ></i>
           </div>
         </dd>
       </dl>
@@ -18,65 +33,65 @@
 </template>
 
 <script>
-import SplitLine from '@/components/base/split-line/split-line'
-import Utils from '@/services/utils/util'
-import { mapState } from 'vuex'
+import SplitLine from "@/components/base/split-line/split-line";
+// import Utils from '@/services/utils/util'
+import { mapState } from "vuex";
 
 const monthMap = {
-  1: 'January',
-  2: 'February',
-  3: 'March',
-  4: 'April',
-  5: 'May',
-  6: 'June',
-  7: 'July',
-  8: 'August',
-  9: 'September',
-  10: 'October',
-  11: 'November',
-  12: 'December'
-}
+  1: "January",
+  2: "February",
+  3: "March",
+  4: "April",
+  5: "May",
+  6: "June",
+  7: "July",
+  8: "August",
+  9: "September",
+  10: "October",
+  11: "November",
+  12: "December",
+};
 
 export default {
-  name: 'archive-page',
+  name: "archive-page",
 
   components: {
-    SplitLine
+    SplitLine,
   },
 
   head() {
     return {
-      title: '归档'
-    }
+      title: "归档",
+    };
   },
 
-  async fetch ({ store, params }) {
-    await store.dispatch('article/getArchive')
+  async fetch({ store, params }) {
+    await store.dispatch("article/getArchive");
   },
 
   filters: {
     monthTrans(month) {
-      return monthMap[month]
-    }
+      return monthMap[month];
+    },
   },
 
   computed: {
     ...mapState({
-      archive: state => state.article.archive,
-      archiveTotal: state => state.article.archiveTotal
-    })
-  }
-}
+      archive: (state) => state.article.archive,
+      archiveTotal: (state) => state.article.archiveTotal,
+    }),
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 @mixin margin {
-  margin-top: .5em;
+  margin-top: 0.5em;
   margin-left: 2em;
 
   @media (max-width: 479px) {
-    margin-top: .3em;
-    margin-left: .7em;
+    margin-top: 0.3em;
+    margin-left: 0.7em;
   }
 }
 
@@ -126,7 +141,7 @@ export default {
     }
 
     &:before {
-      content: '';
+      content: "";
       position: absolute;
       top: 9px;
       left: -18px;
@@ -160,14 +175,13 @@ export default {
       background-size: cover;
       opacity: 0;
       transform: translate(0);
-      transition: all .25s ease-in-out;
+      transition: all 0.25s ease-in-out;
 
       @media (max-width: 479px) {
         margin: -3px 0 0 -15px;
       }
     }
   }
-
 
   &:hover {
     .avatar {
