@@ -11,9 +11,13 @@ if (process.env.NODE_ENV === 'production') {
     if (!window.getSelection) {
       return
     }
-    const content = window.getSelection().toString()
-    e.clipboardData.setData('text/plain', content + copyText)
-    e.clipboardData.setData('text/html', content + copyText)
-    e.preventDefault()
+    if( window.localStorage.getItem('COPIED')){
+      return
+    }
+      window.localStorage.setItem('COPIED', 1)
+      const content = window.getSelection().toString()
+      e.clipboardData.setData('text/plain', content + copyText)
+      e.clipboardData.setData('text/html', content + copyText)
+      e.preventDefault()
   })
 }
